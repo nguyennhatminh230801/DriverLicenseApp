@@ -58,13 +58,13 @@ class QuestionOptionAdapter :
     }
 
     companion object {
-        const val UNSELECTED_COLOR = R.color.white
-        const val SELECTED_COLOR = R.color.highlight_color
-        const val TEXT_COLOR = R.color.black
-        const val STATE_INCORRECT_COLOR = R.color.red_pastel
-        const val STATE_CORRECT_COLOR = R.color.green_pastel
-        const val DARK_MODE_BACKGROUND_UNSELECTED_COLOR = R.color.grey_700
-        const val VIEW_POSITION_LAYOUT_BACKGROUND_COLOR = R.color.white
+        val UNSELECTED_COLOR = R.color.white
+        val SELECTED_COLOR = R.color.highlight_color
+        val TEXT_COLOR = R.color.black
+        val STATE_INCORRECT_COLOR = R.color.red_pastel
+        val STATE_CORRECT_COLOR = R.color.green_pastel
+        val DARK_MODE_BACKGROUND_UNSELECTED_COLOR = R.color.grey_700
+        val VIEW_POSITION_LAYOUT_BACKGROUND_COLOR = R.color.white
     }
 
     inner class ViewHolder(

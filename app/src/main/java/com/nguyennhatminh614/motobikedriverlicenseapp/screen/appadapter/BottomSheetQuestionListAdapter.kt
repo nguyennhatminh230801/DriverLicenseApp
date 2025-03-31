@@ -56,11 +56,11 @@ class BottomSheetQuestionListAdapter:
     }
 
     companion object {
-        const val SELECTED_COLOR = R.color.primary_color
-        const val UNSELECTED_COLOR = R.color.transparent
-        const val STATE_UNKNOWN_COLOR = R.color.white
-        const val STATE_INCORRECT_COLOR = R.color.red_pastel
-        const val STATE_CORRECT_COLOR = R.color.green_pastel
+        val SELECTED_COLOR = R.color.primary_color
+        val UNSELECTED_COLOR = R.color.transparent
+        val STATE_UNKNOWN_COLOR = R.color.white
+        val STATE_INCORRECT_COLOR = R.color.red_pastel
+        val STATE_CORRECT_COLOR = R.color.green_pastel
     }
 
     inner class ViewHolder(
