@@ -7,12 +7,12 @@ import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.WrongAnswer
 
 class WrongAnswerObjectTypeConverter {
     @TypeConverter
-    fun convertJsonToListOptionAnswer(json: String): MutableList<WrongAnswer?> {
+    fun convertJsonToListOptionAnswer(json: String): MutableList<WrongAnswer> {
         val typeToken = object : TypeToken<MutableList<WrongAnswer>>() {}.type
         return Gson().fromJson(json, typeToken)
     }
 
     @TypeConverter
-    fun convertListOptionAnswerToJson(listQuestions: MutableList<WrongAnswer>): String? =
+    fun convertListOptionAnswerToJson(listQuestions: MutableList<WrongAnswer>): String =
         Gson().toJson(listQuestions)
 }

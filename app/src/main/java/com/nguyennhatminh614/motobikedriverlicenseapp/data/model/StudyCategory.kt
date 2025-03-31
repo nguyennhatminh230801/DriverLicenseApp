@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.StudyCategory.Companion.STUDY_CATEGORY_TABLE
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = STUDY_CATEGORY_TABLE)

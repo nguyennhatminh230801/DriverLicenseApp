@@ -10,7 +10,7 @@ import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.ExamState.Const
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.ExamState.Constant.PASSED_TYPE
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.ExamState.Constant.UNDEFINED_TYPE
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant.AppConstant
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = TABLE_EXAM)

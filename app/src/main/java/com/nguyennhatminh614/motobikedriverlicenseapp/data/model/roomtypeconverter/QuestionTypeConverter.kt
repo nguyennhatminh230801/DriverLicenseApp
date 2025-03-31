@@ -6,12 +6,12 @@ import com.google.gson.reflect.TypeToken
 
 class QuestionTypeConverter {
     @TypeConverter
-    fun convertJsonToListOptionAnswer(json: String): MutableList<String?> {
+    fun convertJsonToListOptionAnswer(json: String): MutableList<String> {
         val typeToken = object : TypeToken<MutableList<String>>() {}.type
         return Gson().fromJson(json, typeToken)
     }
 
     @TypeConverter
-    fun convertListOptionAnswerToJson(listQuestions: MutableList<String>): String? =
+    fun convertListOptionAnswerToJson(listQuestions: MutableList<String>): String =
         Gson().toJson(listQuestions)
 }

@@ -8,7 +8,7 @@ import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.NewQuestion
 
 class ExamTypeConverter {
     @TypeConverter
-    fun convertJsonToListQuestion(json: String): MutableList<NewQuestion?> {
+    fun convertJsonToListQuestion(json: String): MutableList<NewQuestion> {
         val typeToken = object : TypeToken<MutableList<NewQuestion>>() {}.type
         return Gson().fromJson(json, typeToken)
     }
@@ -18,7 +18,7 @@ class ExamTypeConverter {
         Gson().toJson(listQuestions)
 
     @TypeConverter
-    fun convertJsonToListExamHistory(json: String): MutableList<ExamHistory?> {
+    fun convertJsonToListExamHistory(json: String): MutableList<ExamHistory> {
         val typeToken = object : TypeToken<MutableList<ExamHistory>>() {}.type
         return Gson().fromJson(json, typeToken)
     }

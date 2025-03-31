@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import com.google.firebase.firestore.PropertyName
 import com.google.gson.annotations.SerializedName
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.NewQuestion.Companion.TABLE_QUESTION
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import java.text.FieldPosition
 
 @Parcelize
