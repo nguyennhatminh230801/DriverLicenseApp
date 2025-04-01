@@ -20,9 +20,16 @@
         tools:targetApi="31">
         <activity
             android:name=".composescreen.ComposeMainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_compose_main"
-            android:theme="@style/Theme.MotobikeDriverLicenseApp" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MotobikeDriverLicenseApp">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".screen.mainscreen.MainActivity"
             android:exported="false"
@@ -35,16 +42,10 @@
         </activity>
         <activity
             android:name=".screen.splash.SplashActivity"
-            android:exported="true"
+            android:exported="false"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/ThemeSplash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/ThemeSplash" />
     </application>
 
 </manifest>
