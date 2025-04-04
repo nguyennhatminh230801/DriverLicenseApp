@@ -18,7 +18,7 @@ import org.koin.androidx.compose.navigation.koinNavViewModel
  */
 
 fun NavController.navigateToHomeScreen(navOptions: NavOptions? = null) {
-    this.navigate(HomeNavigation.route, navOptions)
+    this.navigate(HomeNavigation.route, navOptions) 
 }
 
 fun NavGraphBuilder.homeScreen(appState: AppState) {

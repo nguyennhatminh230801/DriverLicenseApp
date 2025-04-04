@@ -20,10 +20,10 @@ fun NavController.navigateToMainScreen(navOptions: NavOptions? = null) {
     this.navigate(MainNavigation.route, navOptions)
 }
 
-fun NavGraphBuilder.mainScreen(appState: AppState) {
+fun NavGraphBuilder.mainScreen() {
     composable(route = MainNavigation.route) {
         val viewModel : ComposeMainViewModel = koinNavViewModel<ComposeMainViewModel>()
-        MainRoute(appState = appState, viewModel = viewModel)
+        MainRoute(viewModel = viewModel)
     }
 }
 

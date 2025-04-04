@@ -23,6 +23,6 @@ internal fun AppNavHost(
         modifier = modifier,
     ) {
         splashScreen(appState = appState)
-        mainScreen(appState = appState)
+        mainScreen()
     }
 }

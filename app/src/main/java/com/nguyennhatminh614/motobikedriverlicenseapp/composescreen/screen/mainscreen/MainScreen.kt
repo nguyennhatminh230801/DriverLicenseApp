@@ -1,5 +1,7 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.mainscreen
 
+import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
@@ -39,14 +41,19 @@ import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.wrong
 
 @Composable
 fun MainRoute(
-    appState: AppState,
     modifier: Modifier = Modifier,
     viewModel: ComposeMainViewModel
 ) {
+    val activity = LocalContext.current as Activity
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val navController = rememberNavController()
-
+    val appState = rememberAppState(LocalContext.current)
     val uiState: ComposeMainViewModel.MainScreenUiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    BackHandler {
+        if (appState.isFinish) {
+            activity.finish()
+        }
+    }
 
     LaunchedEffect(key1 = uiState.currentScreen) {
         val navOption = navOptions {
@@ -56,15 +63,21 @@ fun MainRoute(
         }
 
         when (uiState.currentScreen) {
-            MainScreenConstant.NAV_HOME -> navController.navigateToHomeScreen(navOption)
-            MainScreenConstant.NAV_CHANGE_LICENSE_TYPE -> navController.navigateToChangeLicenseScreen(navOption)
-            MainScreenConstant.NAV_EXAM -> navController.navigateToExamScreen(navOption)
-            MainScreenConstant.NAV_STUDY -> navController.navigateToStudyScreen(navOption)
-            MainScreenConstant.NAV_TRAFFIC_SIGN -> navController.navigateToTrafficSignScreen(navOption)
-            MainScreenConstant.NAV_TIPS_HIGH_SCORE -> navController.navigateToTipsHighScoreScreen(navOption)
-            MainScreenConstant.NAV_WRONG_ANSWER -> navController.navigateToWrongAnswerScreen(navOption)
-            MainScreenConstant.NAV_INSTRUCTION -> navController.navigateToInstructionScreen(navOption)
-            MainScreenConstant.NAV_SETTINGS -> navController.navigateToSettingsScreen(navOption)
+            MainScreenConstant.NAV_HOME -> {
+                appState.navController.navigateToHomeScreen(
+                    navOptions = navOptions {
+                        launchSingleTop = true
+                    }
+                )
+            }
+            MainScreenConstant.NAV_CHANGE_LICENSE_TYPE -> appState.navController.navigateToChangeLicenseScreen(navOption)
+            MainScreenConstant.NAV_EXAM -> appState.navController.navigateToExamScreen(navOption)
+            MainScreenConstant.NAV_STUDY -> appState.navController.navigateToStudyScreen(navOption)
+            MainScreenConstant.NAV_TRAFFIC_SIGN -> appState.navController.navigateToTrafficSignScreen(navOption)
+            MainScreenConstant.NAV_TIPS_HIGH_SCORE -> appState.navController.navigateToTipsHighScoreScreen(navOption)
+            MainScreenConstant.NAV_WRONG_ANSWER -> appState.navController.navigateToWrongAnswerScreen(navOption)
+            MainScreenConstant.NAV_INSTRUCTION -> appState.navController.navigateToInstructionScreen(navOption)
+            MainScreenConstant.NAV_SETTINGS -> appState.navController.navigateToSettingsScreen(navOption)
         }
     }
 
@@ -76,7 +89,7 @@ fun MainRoute(
         onUpdateCurrentScreen = { currentScreen ->
             viewModel.updateCurrentScreen(currentScreen)
         },
-        navController = navController,
+        navController = appState.navController,
     )
 }
 
