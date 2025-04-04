@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Ứng dung ôn thi GPLX</string>
-    <string name="text_temp_loading_splash_screen">Đang tải.</string>
     <string name="title_activity_main">Ôn thi GPLX</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -67,4 +66,16 @@
     <string name="text_temp_title_instruction"><b>HƯỚNG DẪN THI THỰC HÀNH XE MÁY (4 PHẦN):</b>
         \n\nKhi giám khảo gọi tên nhận xe, bạn lưu ý số xe mình chuẩn bị nhận để thi. Khi hệ thống đọc đến số xe của bạn thì bạn bắt đầu xuất phát. Phải hoàn thành đúng và đủ 04 phần thi dưới đây:</string>
     <string name="title_activity_compose_main">ComposeMainActivity</string>
+
+    <string name="text_splash_loading">Đang tải</string>
+
+    <string name="home_navigation_home">Trang chủ</string>
+    <string name="home_navigation_change_license_class">Thay đổi hạng bằng</string>
+    <string name="home_navigation_driving_test">Thi sát hạch</string>
+    <string name="home_navigation_learn_theory">Học lý thuyết</string>
+    <string name="home_navigation_road_signs">Biển báo đường bộ</string>
+    <string name="home_navigation_high_score_tips">Mẹo điểm cao</string>
+    <string name="home_navigation_incorrect_answers">Các câu làm sai</string>
+    <string name="home_navigation_practical_test">Bài thi thực hành</string>
+    <string name="home_navigation_settings">Cài đặt</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.home
+package com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.study
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -6,11 +6,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
-    Text(text = "Home Screen")
+fun StudyScreen(modifier: Modifier = Modifier) {
+    Text(text = "Study Screen")
 }
 
 @Preview
 @Composable
-fun PreviewHomeScreen() = HomeScreen()
+fun PreviewStudyScreen() = StudyScreen()
 

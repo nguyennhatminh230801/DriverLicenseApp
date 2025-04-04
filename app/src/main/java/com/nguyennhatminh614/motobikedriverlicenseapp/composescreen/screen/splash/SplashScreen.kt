@@ -18,17 +18,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.nguyennhatminh614.motobikedriverlicenseapp.R
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.components.NinePatchImage
+import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.ui.theme.MotorbikeDriverLicenseAppTheme
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.ui.theme.customColorsPalette
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.ui.theme.customFontStyle
+import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.utils.annotations.DarkLightPreview
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant.AppConstant
 import kotlinx.coroutines.delay
 
 private const val MAX_COUNTER = 3
-private const val LOADING = "Đang tải"
 
 @Composable
 fun SplashRoute(
@@ -48,7 +50,7 @@ internal fun SplashScreen(
 ) {
     var counter by remember { mutableIntStateOf(0) }
 
-    val counterText = LOADING + ".".repeat(counter)
+    val counterText = stringResource(R.string.text_splash_loading) + ".".repeat(counter)
 
     LaunchedEffect(key1 = Unit) {
         repeat(MAX_COUNTER) {
@@ -77,20 +79,24 @@ internal fun SplashScreen(
 
         CircularProgressIndicator(
             modifier = Modifier.padding(top = 50.dp),
-            color = MaterialTheme.customColorsPalette.primaryTextColor,
+            color = colorResource(R.color.white),
         )
 
         Text(
             text = counterText,
-            style = MaterialTheme.customFontStyle.textStyleNormal,
+            style = MaterialTheme.customFontStyle.textStyleNormal.copy(
+                color = colorResource(R.color.white)
+            ),
             modifier = Modifier
                 .padding(top = 20.dp)
         )
     }
 }
 
-@Preview
+@DarkLightPreview
 @Composable
 private fun PreviewSplashScreen() {
-    SplashScreen()
+    MotorbikeDriverLicenseAppTheme {
+        SplashScreen()
+    }
 }

@@ -35,14 +35,14 @@ fun MotorbikeDriverLicenseAppTheme(
 ) {
     val lightCustomColorsPalette = CustomColorsPalette(
         primaryColor = colorResource(R.color.primary_color),
-        primaryTextColor = colorResource(R.color.white),
-        backgroundColor = Color.White,
+        primaryTextColor = colorResource(R.color.black),
+        backgroundColor = colorResource(R.color.white),
     )
 
     val darkCustomColorsPalette = CustomColorsPalette(
         primaryColor = colorResource(R.color.primary_color),
-        primaryTextColor = Color.Black,
-        backgroundColor = Color.White,
+        primaryTextColor = colorResource(R.color.white),
+        backgroundColor = colorResource(R.color.black),
     )
 
     // "normal" palette, nothing change here

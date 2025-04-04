@@ -8,7 +8,7 @@ import androidx.navigation.navOptions
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.AppState
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.navigation.NavNoArg
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.navigation.RouteConstant
-import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.home.navigation.navigateToHome
+import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.mainscreen.navigation.navigateToMainScreen
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.splash.SplashRoute
 
 /**
@@ -23,9 +23,9 @@ fun NavGraphBuilder.splashScreen(appState: AppState) {
     composable(route = SplashNavigation.route) {
         SplashRoute(
             onNavigateToMainScreen = {
-                appState.navController.navigateToHome(
+                appState.navController.navigateToMainScreen(
                     navOptions = navOptions {
-                        //Remove Splash screen after show home screen
+                        //Remove Splash screen after show main screen
                         popUpTo(SplashNavigation.route) {
                             inclusive = true
                         }
