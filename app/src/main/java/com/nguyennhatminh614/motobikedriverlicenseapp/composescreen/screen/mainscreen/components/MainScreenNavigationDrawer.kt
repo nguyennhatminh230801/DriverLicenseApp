@@ -29,9 +29,11 @@ import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.key
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -42,24 +44,31 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nguyennhatminh614.motobikedriverlicenseapp.R
+import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.AppState
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.components.NinePatchImage
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.ui.theme.MotorbikeDriverLicenseAppTheme
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.ui.theme.customColorsPalette
+import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.ui.theme.customFontStyle
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.utils.annotations.DarkLightPreview
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.utils.draw9Patch
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import androidx.compose.runtime.*
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.rememberAppState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreenNavigationDrawer(
-    currentScreen: String,
+    appState: AppState,
     modifier: Modifier = Modifier,
     scope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
     onItemClick: (NavigationDrawerItemData) -> Unit = {},
-    screenContent: @Composable BoxScope.() -> Unit = { Text("Content of the main screen") }
+    screenContent: @Composable BoxScope.() -> Unit
 ) {
     ModalNavigationDrawer(
         modifier = modifier.background(color = MaterialTheme.customColorsPalette.backgroundColor),
@@ -72,7 +81,7 @@ fun MainScreenNavigationDrawer(
             ) {
                 DrawerHeader()
                 DrawerContent(
-                    currentScreen = currentScreen,
+                    currentScreen = appState.currentScreenName,
                     onItemClick = {
                         scope.launch {
                             onItemClick(it)
@@ -85,14 +94,27 @@ fun MainScreenNavigationDrawer(
         content = {
             Scaffold(
                 topBar = {
-                    TopAppBar(title = { Text("My App") }, navigationIcon = {
-                        IconButton(onClick = {
-                            scope.launch {
-                                drawerState.open()
+                    TopAppBar(
+                        colors = TopAppBarDefaults.topAppBarColors(
+                            containerColor = MaterialTheme.customColorsPalette.primaryColor,
+                        ),
+                        title = { Text(
+                            text = stringResource(appState.currentScreenNameStringId),
+                            style = MaterialTheme.customFontStyle.textStyleBold.copy(
+                                fontSize = 18.sp,
+                                color = Color.White
+                            )
+                        ) },
+                        navigationIcon = {
+                            IconButton(
+                                onClick = {
+                                    scope.launch {
+                                        drawerState.open()
+                                    }
+                                },
+                            ) {
+                                Icon(Icons.Filled.Menu, contentDescription = "Menu", tint = Color.White)
                             }
-                        }) {
-                            Icon(Icons.Filled.Menu, contentDescription = "Menu")
-                        }
                     })
                 }) { paddingValues ->
                 Box(
@@ -148,6 +170,7 @@ fun DrawerHeader() {
 @Composable
 fun DrawerContent(
     currentScreen: String,
+    menuItems: List<NavigationDrawerItemData> = MainScreenFactory.getMenus(),
     modifier: Modifier = Modifier,
     onItemClick: (NavigationDrawerItemData) -> Unit = {}
 ) {
@@ -159,7 +182,7 @@ fun DrawerContent(
             .padding(8.dp)
             .fillMaxHeight()
     ) {
-        MainScreenFactory.getMenus().forEach { itemData ->
+        menuItems.forEach { itemData ->
             key(itemData.id) {
                 NavigationDrawerItem(
                     icon = {
@@ -201,8 +224,9 @@ data class NavigationDrawerItemData(
 fun PreviewDrawerWithHeader_ClosedScreen() {
     MotorbikeDriverLicenseAppTheme {
         MainScreenNavigationDrawer(
-            currentScreen = MainScreenConstant.NAV_HOME,
-            drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+            appState = rememberAppState(LocalContext.current),
+            drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
+            screenContent = {}
         )
     }
 }
@@ -212,8 +236,9 @@ fun PreviewDrawerWithHeader_ClosedScreen() {
 fun PreviewDrawerWithHeader_OpenScreen() {
     MotorbikeDriverLicenseAppTheme {
         MainScreenNavigationDrawer(
-            currentScreen = MainScreenConstant.NAV_HOME,
-            drawerState = rememberDrawerState(initialValue = DrawerValue.Open)
+            appState = rememberAppState(LocalContext.current),
+            drawerState = rememberDrawerState(initialValue = DrawerValue.Open),
+            screenContent = {}
         )
     }
 }

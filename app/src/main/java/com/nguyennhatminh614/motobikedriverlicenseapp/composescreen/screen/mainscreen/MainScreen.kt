@@ -67,6 +67,9 @@ fun MainRoute(
                 appState.navController.navigateToHomeScreen(
                     navOptions = navOptions {
                         launchSingleTop = true
+                        popUpTo(HomeNavigation.route) {
+                            inclusive = true
+                        }
                     }
                 )
             }
@@ -85,7 +88,6 @@ fun MainRoute(
         appState = appState,
         modifier = modifier,
         drawerState = drawerState,
-        currentScreen = uiState.currentScreen,
         onUpdateCurrentScreen = { currentScreen ->
             viewModel.updateCurrentScreen(currentScreen)
         },
@@ -98,12 +100,11 @@ internal fun MainScreen(
     appState: AppState,
     modifier: Modifier = Modifier,
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-    currentScreen: String,
     onUpdateCurrentScreen: (String) -> Unit = {},
     navController: NavHostController = rememberNavController()
 ) {
     MainScreenNavigationDrawer(
-        currentScreen = currentScreen,
+        appState = appState,
         modifier = modifier,
         scope = appState.coroutineScope,
         drawerState = drawerState,
@@ -115,7 +116,7 @@ internal fun MainScreen(
                 navController = navController,
                 startDestination = HomeNavigation.route,
             ) {
-                homeScreen(appState)
+                homeScreen(appState, onItemClick = onUpdateCurrentScreen)
                 settingsScreen(appState)
                 examScreen(appState)
                 studyScreen(appState)
@@ -133,9 +134,6 @@ internal fun MainScreen(
 @Composable
 private fun MainScreenPreview() {
     MotorbikeDriverLicenseAppTheme {
-        MainScreen(
-            currentScreen = MainScreenConstant.NAV_HOME,
-            appState = rememberAppState(LocalContext.current)
-        )
+        MainScreen(appState = rememberAppState(LocalContext.current))
     }
 }

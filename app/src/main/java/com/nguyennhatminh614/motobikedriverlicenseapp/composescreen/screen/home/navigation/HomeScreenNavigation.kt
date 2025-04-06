@@ -10,6 +10,7 @@ import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.navigation.R
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.home.HomeScreen
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.mainscreen.ComposeMainViewModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.mainscreen.MainRoute
+import com.nguyennhatminh614.motobikedriverlicenseapp.composescreen.screen.mainscreen.components.NavigationDrawerItemData
 import org.koin.androidx.compose.navigation.koinNavViewModel
 
 
@@ -21,11 +22,9 @@ fun NavController.navigateToHomeScreen(navOptions: NavOptions? = null) {
     this.navigate(HomeNavigation.route, navOptions) 
 }
 
-fun NavGraphBuilder.homeScreen(appState: AppState) {
+fun NavGraphBuilder.homeScreen(appState: AppState, onItemClick: (String) -> Unit = {}) {
     composable(route = HomeNavigation.route) {
-        /*val viewModel : ComposeHomeViewModel = koinNavViewModel<ComposeHomeViewModel>()
-        HomeRoute(appState = appState, viewModel = viewModel)*/
-        HomeScreen()
+        HomeScreen(appState, onItemClick = onItemClick)
     }
 }
 
